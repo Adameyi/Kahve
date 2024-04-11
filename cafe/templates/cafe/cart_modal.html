@@ -1,0 +1,86 @@
+{% load static %}
+{% block cart %}
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end semi-rounded-left darkCoffeeBrown" tabindex="-1" id="cartOffcanvas"
+        aria-labelledby="cartOffcanvasLabel">
+        <div
+            class="offcanvas-header semi-rounded-topleft darkCoffeeBrown d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-center align-items-center w-100">
+                <h5 class="offcanvas-title text-white m-0" id="cartOffcanvasLabel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cart -
+                    1
+                    Item
+                </h5>
+            </div>
+            <button type="button" class="no-decoration text-white" data-bs-dismiss="offcanvas" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    style="width:30px; height:30px;">
+                    <path fill-rule="evenodd"
+                        d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                        clip-rule="evenodd" />
+                </svg>
+
+            </button>
+        </div>
+        <div class="mx-auto">
+            <div class="btn-group text-white mb-3 w-75 d-flex justify-content-center" data-toggle="buttons">
+                <input type="radio" id="one" name="test-toggle" checked="checked">
+                <label for="one" class="btn btn-default-toggle-ghost active">
+                    Delivery
+                </label>
+                <input type="radio" id="two" name="test-toggle">
+                <label for="two" class="btn btn-default-toggle-ghost active">
+                    Pickup
+                </label>
+            </div>
+        </div>
+
+        <div class="offcanvas-body lightCoffeeBrown text-white d-flex flex-column align-items-center">
+        {% for item in products_in_cart %}
+            <div class="d-flex align-items-center w-100">
+                <img class="h-75 w-25" src="{% static 'images/cartPlaceholder.png' %}" alt="{{ product.name }}">
+                <p class="mb-0 ms-3 semi-bold">{{ item.product.name }}<br><span class="productPriceText">${{item.product.price}}</span>
+                    <span class="coffeeBrownText ms-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" style="height:30px; width:30px;">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        {{ item.quantity }}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" style="height:30px; width:30px;">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" style="height:30px; width:30px;">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+
+                    </span>
+                </p>
+            </div>
+            <hr class="w-100">
+            {% endfor %}
+            <!---->
+            <div class="mx-auto">
+                <button type="button" class="custom-shadow bg-cancel btn w-100 rounded-pill text-white"
+                    data-bs-dismiss="offcanvas">Clear All Items</button>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-column offcanvas-footer darkCoffeeBrown semi-rounded-left d-flex justify-content-center h-25">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <p class="ps-3 text-white smallText"><span class="semi-bold subtotalText">Subtotal</span><br />*Excl.
+                    Delivery
+                </p>
+                <p class="text-white semi-bold priceText pe-3">$12.00</p>
+            </div>
+            <button type="button"
+                class="checkoutBtn custom-shadow subtotalText mx-auto coffeeBrown btn w-75 h-25 rounded-pill text-white">Proceed
+                to
+                Checkout</button>
+        </div>
+    </div>
+    {% endblock %}
